@@ -17,39 +17,53 @@ def napok(lista:list):
         napokSzama += 1
     return napokSzama
 
-def nincskoltes(lista:list):
+def nincsKoltes(lista:list):
     nemKoltottek = 0
     for nap in lista:
         if nap == 0:
             nemKoltottek += 1
     return nemKoltottek
 
-def atlagK(lista:list):
-    kereset = 0
+def atlagKoltes(lista:list):
+    koltes = 0
     for nap in lista:
-        kereset += nap
-    return round(kereset/len(lista), 2)
+        koltes += nap
+    return round(koltes/len(lista), 2)
 
 def legkisebb(lista:list):
-    # for koltes in lista:
-    #     if koltes != 0:
-    #         return min(lista)
-    return min(lista)
+    legkisebbKoltes = lista[0]
+    for nap in lista:
+        if nap < legkisebbKoltes and nap != 0:
+            legkisebbKoltes = nap
+    return legkisebbKoltes
 
 def legnagyobb(lista:list):
     return max(lista)
 
 def osszKoltes(lista:list):
-    kereset = 0
+    koltes = 0
     for nap in lista:
-        kereset += nap
-    return kereset
+        koltes += nap
+    return koltes
+
+def sorozat(lista:list):
+    koltesNelkNapokSzama = 0
+    leghosszabbSorozat = 0
+    for nap in lista:
+        if nap == 0:
+            koltesNelkNapokSzama += 1
+            if koltesNelkNapokSzama > leghosszabbSorozat:
+                leghosszabbSorozat = koltesNelkNapokSzama
+        else:
+            koltesNelkNapokSzama = 0
+    return leghosszabbSorozat
 
 honap = beolvasas(honap)
 print(honap)
 print("Ennyi nap volt az adott hónapban:",napok(honap))
-print("Ennyi napon volt 0 a költés:",nincskoltes(honap))
-print("Ennyi volt a napi átlagköltés a hónapban:",atlagK(honap))
-print("A legkisebb vásárlás a hónapban",legkisebb(honap))
-print("A legnagyobb vásárlás a hónapban",legnagyobb(honap))
+print("Ennyi napon volt 0 a költés:",nincsKoltes(honap))
+print("Ennyi volt a napi átlagköltés a hónapban:",atlagKoltes(honap),"Ft")
+print("A legkisebb vásárlás a hónapban",legkisebb(honap),"Ft")
+print("A legnagyobb vásárlás a hónapban",legnagyobb(honap),"Ft")
 print("A havi össz költés:",osszKoltes(honap),"Ft")
+print("Sorozatban a legtöbb nap költés nélkül:",sorozat(honap))
