@@ -4,9 +4,12 @@ nemKoltes = 0
 atlagKoltes = 0
 
 def beolvasas(lista:list):
+    intLista = []
     f = open("vasarlas.csv", "r")
     lista = (f.readline().strip("\n").split(";"))
-    return lista
+    for i in lista:
+        intLista.append(int(i))
+    return intLista
 
 def napok(lista:list):
     napokSzama = 0
@@ -17,7 +20,7 @@ def napok(lista:list):
 def nincskoltes(lista:list):
     nemKoltottek = 0
     for nap in lista:
-        if nap == "0":
+        if nap == 0:
             nemKoltottek += 1
     return nemKoltottek
 
@@ -26,14 +29,22 @@ def atlagK(lista:list):
     kereset = 0
     for nap in lista:
         napokSzama += 1
-        kereset += int(nap)
+        kereset += nap
     return round(kereset/napokSzama, 2)
+
+def legkisebb(lista:list):
+    # for koltes in lista:
+    #     if koltes != 0:
+    #         return min(lista)
+    return min(lista)
+
+def legnagyobb(lista:list):
+    return max(lista)
 
 honap = beolvasas(honap)
 print(honap)
-napokHonapban = napok(honap)
-print(napokHonapban)
-nemKoltes = nincskoltes(honap)
-print(nemKoltes)
-atlagKoltes = atlagK(honap)
-print(atlagKoltes)
+print("Ennyi nap volt az adott hónapban:",napok(honap))
+print("Ennyi napon volt 0 a költés:",nincskoltes(honap))
+print("Ennyi volt a napi átlagköltés a hónapban:",atlagK(honap))
+print("A legkisebb vásárlás a hónapban",legkisebb(honap))
+print("A legnagyobb vásárlás a hónapban",legnagyobb(honap))
