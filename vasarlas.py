@@ -25,12 +25,10 @@ def nincskoltes(lista:list):
     return nemKoltottek
 
 def atlagK(lista:list):
-    napokSzama = 0
     kereset = 0
     for nap in lista:
-        napokSzama += 1
         kereset += nap
-    return round(kereset/napokSzama, 2)
+    return round(kereset/len(lista), 2)
 
 def legkisebb(lista:list):
     # for koltes in lista:
@@ -41,6 +39,12 @@ def legkisebb(lista:list):
 def legnagyobb(lista:list):
     return max(lista)
 
+def osszKoltes(lista:list):
+    kereset = 0
+    for nap in lista:
+        kereset += nap
+    return kereset
+
 honap = beolvasas(honap)
 print(honap)
 print("Ennyi nap volt az adott hónapban:",napok(honap))
@@ -48,3 +52,4 @@ print("Ennyi napon volt 0 a költés:",nincskoltes(honap))
 print("Ennyi volt a napi átlagköltés a hónapban:",atlagK(honap))
 print("A legkisebb vásárlás a hónapban",legkisebb(honap))
 print("A legnagyobb vásárlás a hónapban",legnagyobb(honap))
+print("A havi össz költés:",osszKoltes(honap),"Ft")
